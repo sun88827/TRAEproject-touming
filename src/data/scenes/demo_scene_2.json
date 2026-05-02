@@ -1,0 +1,13 @@
+{
+  "id": "demo_scene_2",
+  "narrative": ["走廊尽头的灯忽明忽暗，你听见有人在低声呼唤你的名字。"],
+  "choices": [
+    {
+      "id": "end",
+      "text": "推开门，结束这段梦。",
+      "effects": [],
+      "next": "route_end"
+    }
+  ]
+}
+

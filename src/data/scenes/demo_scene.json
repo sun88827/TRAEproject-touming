@@ -1,0 +1,25 @@
+{
+  "id": "demo_scene",
+  "narrative": ["你醒来时，窗外正下着小雨。", "手机亮起，一条陌生短信：\"你准备好了吗？\""],
+  "choices": [
+    {
+      "id": "reply",
+      "text": "回复：我准备好了。",
+      "effects": [
+        {
+          "type": "stat",
+          "target": "player.mood",
+          "value": -10
+        }
+      ],
+      "next": "demo_scene_2"
+    },
+    {
+      "id": "ignore",
+      "text": "不理会，先去洗把脸。",
+      "effects": [],
+      "next": "demo_scene_2"
+    }
+  ]
+}
+
