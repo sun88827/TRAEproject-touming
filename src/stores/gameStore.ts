@@ -11,16 +11,29 @@ const DEFAULT_GAME_STATE: GameState = {
       energy: 0,
     },
   },
-  npcs: {},
+  npcs: {
+    lin_xiaoyu: { relationship: 0 },
+  },
 }
 
 deepFreeze(DEFAULT_GAME_STATE)
+
+const isAllowedGamePath = (path: string) => {
+  if (path === "currentSceneId") return true
+  if (path === "player.baseStats.mood") return true
+  if (path === "player.baseStats.energy") return true
+
+  const parts = path.split(".").filter(Boolean)
+  if (parts.length === 3 && parts[0] === "npcs" && parts[2] === "relationship" && parts[1]) return true
+  return false
+}
 
 export const useGameStore = defineStore("gameStore", {
   state: (): GameState => clone(DEFAULT_GAME_STATE),
   actions: {
     updateStat(statPath: string, value: unknown) {
       const p = stripPrefix(stripPrefix(statPath, "gameStore."), "game.")
+      if (!isAllowedGamePath(p)) throw new Error("statPath not allowed")
       setByDotPath(this.$state, p, value)
     },
     ensureNpc(id: string) {

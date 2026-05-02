@@ -30,5 +30,6 @@ export interface UiEvent<T = unknown> {
 }
 
 export interface UiState {
+  isTransitioning: boolean
   eventQueue: UiEvent[]
 }
